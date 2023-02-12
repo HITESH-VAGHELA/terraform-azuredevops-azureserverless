@@ -65,7 +65,7 @@ stages:
                 [
                   {
                     "name": "shdevdb_DOCUMENTDB",
-                    "value": "$(shdevdb_DOCUMENTDB)",
+                    "value": "${shdevdb_DOCUMENTDB}",
                     "slotSetting": false
                   }]
               
