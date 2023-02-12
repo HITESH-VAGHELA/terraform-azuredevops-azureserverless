@@ -5,8 +5,8 @@
 
 trigger: none
 variables:
-  - name: shdevdb_DOCUMENTDB
-    value : $(shdevdb_DOCUMENTDB)
+  - name: "shdevdb_DOCUMENTDB"
+    value : "$(shdevdb_DOCUMENTDB)"
 pool:
   vmImage: ubuntu-latest
 
