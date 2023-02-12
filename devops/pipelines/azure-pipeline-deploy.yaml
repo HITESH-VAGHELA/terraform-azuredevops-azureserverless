@@ -14,6 +14,10 @@ stages:
       - job: Build
         continueOnError: false 
         steps: 
+          - task: NodeTool@0
+            inputs:
+              versionSource: 'spec'
+              versionSpec: '16.19.0'
           - task: Npm@1
             displayName: Npm Installation
             inputs:
