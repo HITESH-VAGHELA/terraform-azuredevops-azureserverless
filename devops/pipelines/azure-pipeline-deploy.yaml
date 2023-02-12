@@ -61,5 +61,11 @@ stages:
               appName: 'hitesh-azure-function'
               package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               runtimeStack: 'NODE|14'
-              appSettings: 'shdevdb_DOCUMENTDB: "${shdevdb_DOCUMENTDB}"'
+              appSettings: |
+                [
+                  {
+                    "name": "shdevdb_DOCUMENTDB",
+                    "value": "$(shdevdb_DOCUMENTDB)",
+                    "slotSetting": false
+                  }]
               
