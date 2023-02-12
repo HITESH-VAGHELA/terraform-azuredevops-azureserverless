@@ -85,6 +85,7 @@ typings/
 
 # TypeScript output
 out
+dist
 
 # Azure Functions artifacts
 bin
