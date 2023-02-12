@@ -4,9 +4,7 @@
 # https://aka.ms/yaml
 
 trigger: none
-variables:
-  - name: "shdevdb_DOCUMENTDB"
-    value : "${shdevdb_DOCUMENTDB}"
+
 pool:
   vmImage: ubuntu-latest
 
@@ -21,14 +19,7 @@ stages:
             inputs:
               command: 'install'
               workingDir: '$(System.DefaultWorkingDirectory)/src/'
-          - task: CmdLine@2
-            inputs:
-              script: |
-                cd src/
-                if [ -f extensions.csproj ]
-                then
-                    dotnet build extensions.csproj --runtime ubuntu.16.04-x64 --output ./bin
-                fi
+      
           #- script: |
           #    cd src/
           #    if [ -f extensions.csproj ]
@@ -67,7 +58,7 @@ stages:
               appType: 'functionAppLinux'
               appName: 'hitesh-azure-function'
               package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-              runtimeStack: 'NODE|14'
+              runtimeStack: 'NODE|16'
               #appSettings: |
               # [
               #  {
