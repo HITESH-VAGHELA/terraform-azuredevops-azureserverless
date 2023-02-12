@@ -1,0 +1,55 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables: 
+- group: backend-variables
+
+stages:
+  - stage: terraformValidate       
+    jobs: 
+      - job: validate
+        continueOnError: false 
+        steps: 
+          - task: TerraformInstaller@0
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformCLI@0
+            displayName: terraform init
+            inputs:
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/devops/infra/'
+              backendType: 'azurerm'
+              backendServiceArm: 'hitesh-devops'
+              backendAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
+              backendAzureRmResourceGroupName: '$(bkresourcegroup)'
+              backendAzureRmStorageAccountName: '$(bkstorageaccname)'
+              backendAzureRmContainerName: '$(containername)'
+              backendAzureRmKey: '$(bkkey)'
+              allowTelemetryCollection: true
+            
+          - task: TerraformCLI@0
+            displayName: terraform plan
+            inputs:
+              command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/devops/infra/'
+              environmentServiceName: 'hitesh-devops'
+              providerAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
+              allowTelemetryCollection: true
+            
+          - task: TerraformCLI@0
+            displayName: terraform apply
+            inputs:
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/devops/infra/'
+              environmentServiceName: 'hitesh-devops'
+              commandOptions: '-auto-approve'
+              providerAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
+              allowTelemetryCollection: true

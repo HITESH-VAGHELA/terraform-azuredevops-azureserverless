@@ -1,0 +1,22 @@
+#input variables
+variable "resource_group_name" {}
+variable "storage_account_name" {}
+variable "app_service_plan_name" {}
+variable "function_app_name" {}
+variable "connection_string_name" {}
+variable "connection_string_type" {}
+variable "account_tier" {}
+variable "account_replication_type" {}
+variable "kind_sp" {}
+variable "reserved_sp" {}
+variable "sku_tier" {}
+variable "sku_size" {}
+variable "os_type" {}
+variable "cosmosdb_acc_name" {}
+variable "cosmosdb_name" {}
+variable "collection_name" {}
+variable "apim_instance_name" {}
+variable "publisher_name" {}
+variable "publisher_email" {}
+variable "api_name" {}
+variable "operation_id" {}

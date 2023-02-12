@@ -1,0 +1,61 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Build      
+    jobs: 
+      - job: Build
+        continueOnError: false 
+        steps: 
+          - task: Npm@1
+            displayName: Npm Installation
+            inputs:
+              command: 'install'
+              workingDir: '$(System.DefaultWorkingDirectory)/src/'
+          
+          - script: |
+              cd src/
+              if [ -f extensions.csproj ]
+              then
+                  dotnet build extensions.csproj --runtime ubuntu.16.04-x64 --output ./bin
+              fi
+              #displayName: 'Build extensions'
+
+          - task: Npm@1
+            displayName: Building Application
+            inputs:
+              command: 'custom'
+              workingDir: '$(System.DefaultWorkingDirectory)/src/'
+              customCommand: 'run build --if-present'
+
+       
+          - task: ArchiveFiles@2
+            displayName: 'Archive files'
+            inputs:
+             rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src/'
+             includeRootFolder: false
+             archiveType: zip
+             archiveFile: $(Build.ArtifactStagingDirectory)/dist.zip
+             replaceExistingArchive: true
+         
+          - task: PublishBuildArtifacts@1
+            displayName: Publishing Artifacts
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist.zip'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+          - task: AzureFunctionApp@1
+            displayName: Deploying function to Function App.
+            inputs:
+              azureSubscription: 'hitesh-devops'
+              appType: 'functionAppLinux'
+              appName: 'hitesh-azure-function'
+              package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+              runtimeStack: 'NODE|14'
