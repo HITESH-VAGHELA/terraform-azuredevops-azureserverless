@@ -29,7 +29,7 @@ resource "azurerm_linux_function_app" "zymr-function-app" {
   site_config {}
 
   app_settings = {
-    "var.connection_string_name" = "AccountEndpoint=${var.endpoint};AccountKey=${var.primary_key};"
+    shdevdb_DOCUMENTDB = "AccountEndpoint=${var.endpoint};AccountKey=${var.primary_key};"
   }
   connection_string {
     name  = var.connection_string_name
