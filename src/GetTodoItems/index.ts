@@ -17,7 +17,6 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             status: 204
         };
     }
-    
     context.log.info('Get all todo items completed.');
     context.done();
 };
