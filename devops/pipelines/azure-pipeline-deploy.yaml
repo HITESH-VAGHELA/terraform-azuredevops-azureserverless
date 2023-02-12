@@ -19,7 +19,21 @@ stages:
             inputs:
               command: 'install'
               workingDir: '$(System.DefaultWorkingDirectory)/src/'
-      
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              workingDir: '$(System.DefaultWorkingDirectory)/src/'
+              customCommand: 'install uuid --save'
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              workingDir: '$(System.DefaultWorkingDirectory)/src/'
+              customCommand: 'install @azure/cosmos --save'
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              workingDir: '$(System.DefaultWorkingDirectory)/src/'
+              customCommand: 'install @types/node --save'
           #- script: |
           #    cd src/
           #    if [ -f extensions.csproj ]
