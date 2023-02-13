@@ -2,8 +2,8 @@ import { CosmosClient } from "@azure/cosmos";
 import { ToDoItemRecord } from "../Models/todo-item-record";
 
 function getCosmosDbContainer() {
-    const cosmosDbConnectionString = process.env["shdevdb_DOCUMENTDB"];
-
+    //const cosmosDbConnectionString = process.env["shdevdb_DOCUMENTDB"];
+    const cosmosDbConnectionString = "AccountEndpoint=https://shdevdb.documents.azure.com:443/;AccountKey=VHXfxQ58IgdTvd7k1NDdziIJkmNnfUK0JorLM3aAaAOXrD9Vq2xT19iN6KhuPFzmNotKxPoB7XP8ACDbl6Qnjg==;"
     const client = new CosmosClient(cosmosDbConnectionString);
     const database = client.database("todocontainer");
     const container = database.container("todoItems");
