@@ -23,22 +23,12 @@ stages:
             inputs:
               command: 'install'
               workingDir: '$(System.DefaultWorkingDirectory)/src/'
-          #- script: |
-          #    cd src/
-          #    if [ -f extensions.csproj ]
-          #    then
-          #        dotnet build extensions.csproj --runtime ubuntu.16.04-x64 --output ./bin
-          #    fi
-          #    displayName: 'Build extensions'
-
           - task: Npm@1
             displayName: Building Application
             inputs:
               command: 'custom'
               workingDir: '$(System.DefaultWorkingDirectory)/src/'
               customCommand: 'run build --if-present'
-
-       
           - task: ArchiveFiles@2
             displayName: 'Archive files'
             inputs:
@@ -47,7 +37,6 @@ stages:
              archiveType: zip
              archiveFile: $(Build.ArtifactStagingDirectory)/dist.zip
              replaceExistingArchive: true
-         
           - task: PublishBuildArtifacts@1
             displayName: Publishing Artifacts
             inputs:
@@ -62,11 +51,3 @@ stages:
               appName: 'hitesh-azure-function'
               package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               runtimeStack: 'NODE|16'
-              #appSettings: |
-              # [
-              #  {
-              #    "name": "shdevdb_DOCUMENTDB",
-              #    "value": "$[shdevdb_DOCUMENTDB]",
-              #    "slotSetting": false
-              #  }
-              # ]
