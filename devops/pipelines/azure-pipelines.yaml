@@ -18,6 +18,8 @@ parameters:
 
 variables: 
 - group: backend-variables
+- name: env
+  value: ${{ parameters.environment }}
 
 stages:
   - stage: terraformValidate       
