@@ -8,8 +8,8 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  - template: azure-pipelines.yaml
+#variables:
+#  - template: azure-pipelines.yaml
 
 stages:
   - stage: Build      
@@ -51,7 +51,7 @@ stages:
             inputs:
               azureSubscription: 'hitesh-devops'
               appType: 'functionAppLinux'
-              appName: 'hitesh-azure-function-${variables.env}'
+              appName: 'hitesh-azure-function-dev'
               package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               runtimeStack: 'NODE|16'
 
