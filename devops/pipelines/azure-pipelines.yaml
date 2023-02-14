@@ -8,6 +8,14 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
+parameters:
+  - name: environment
+    type: string
+    default: dev
+    values:
+      - dev
+      - prod
+
 variables: 
 - group: backend-variables
 
@@ -44,12 +52,12 @@ stages:
               providerAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
               allowTelemetryCollection: true
             
-          - task: TerraformCLI@0
-            displayName: terraform apply
-            inputs:
-              command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/devops/infra/'
-              environmentServiceName: 'hitesh-devops'
-              commandOptions: '-auto-approve'
-              providerAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
-              allowTelemetryCollection: true
+        #  - task: TerraformCLI@0
+        #    displayName: terraform apply
+        #    inputs:
+        #      command: 'apply'
+        #      workingDirectory: '$(System.DefaultWorkingDirectory)/devops/infra/'
+        #      environmentServiceName: 'hitesh-devops'
+        #      commandOptions: '-auto-approve'
+        #      providerAzureRmSubscriptionId: '8dcf5406-1ef3-45a7-a85d-67d3dde5d189'
+        #      allowTelemetryCollection: true
