@@ -3,7 +3,7 @@ data "azurerm_resource_group" "zymr-resource-group" {
 }
 
 resource "azurerm_storage_account" "zymr-storage-account" {
-  name                     = var.storage_account_name
+  name                     = "${var.storage_account_name}${terraform.workspace}"
   resource_group_name      = data.azurerm_resource_group.zymr-resource-group.name
   location                 = data.azurerm_resource_group.zymr-resource-group.location
   account_tier             = var.account_tier
@@ -11,7 +11,7 @@ resource "azurerm_storage_account" "zymr-storage-account" {
 }
 
 resource "azurerm_service_plan" "zymr-app-service-plan" {
-  name                = var.app_service_plan_name
+  name                = "${var.app_service_plan_name}-${terraform.workspace}"
   location            = data.azurerm_resource_group.zymr-resource-group.location
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   os_type             = var.kind_sp
@@ -19,7 +19,7 @@ resource "azurerm_service_plan" "zymr-app-service-plan" {
 }
 
 resource "azurerm_linux_function_app" "zymr-function-app" {
-  name                       = var.function_app_name
+  name                       = "${var.function_app_name}-${terraform.workspace}"
   location                   = data.azurerm_resource_group.zymr-resource-group.location
   resource_group_name        = data.azurerm_resource_group.zymr-resource-group.name
   service_plan_id            = azurerm_service_plan.zymr-app-service-plan.id

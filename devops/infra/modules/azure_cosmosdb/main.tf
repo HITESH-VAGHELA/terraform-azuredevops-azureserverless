@@ -3,7 +3,7 @@ data "azurerm_resource_group" "zymr-resource-group" {
 }
 
 resource "azurerm_cosmosdb_account" "zymr-cosmos-db" {
-  name                = var.cosmosdb_acc_name
+  name                = "${var.cosmosdb_acc_name}-${terraform.workspace}"
   location            = data.azurerm_resource_group.zymr-resource-group.location
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   offer_type          = "Standard"
