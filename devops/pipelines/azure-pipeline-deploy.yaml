@@ -46,10 +46,13 @@ stages:
 
 
   - stage: Deploy
+    variables:
+      - template: templates/azure-pipelines.yaml
     jobs:
       - job: DeployingToAzure
         steps:
-          - template: templates/azure-pipelines.yaml
+      #  variables:
+      #    - template: templates/azure-pipelines.yaml
           - task: AzureFunctionApp@1
             displayName: Deploying function to Function App.
             inputs:
