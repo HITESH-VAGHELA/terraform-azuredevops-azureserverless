@@ -8,6 +8,9 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  - template: azure-pipelines.yaml
+
 stages:
   - stage: Build      
     jobs: 
@@ -43,16 +46,6 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist.zip'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-
-
-  - stage: Deploy
-    variables:
-      - template: azure-pipelines.yaml
-    jobs:
-      - job: DeployingToAzure
-        steps:
-      #  variables:
-      #    - template: templates/azure-pipelines.yaml
           - task: AzureFunctionApp@1
             displayName: Deploying function to Function App.
             inputs:
@@ -61,3 +54,21 @@ stages:
               appName: 'hitesh-azure-function-${variables.env}'
               package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               runtimeStack: 'NODE|16'
+
+
+  #- stage: Deploy
+  #  variables:
+  #    - template: azure-pipelines.yaml
+  #  jobs:
+  #    - job: DeployingToAzure
+  #      steps:
+  #    #  variables:
+  #    #    - template: templates/azure-pipelines.yaml
+  #        - task: AzureFunctionApp@1
+  #          displayName: Deploying function to Function App.
+  #          inputs:
+  #            azureSubscription: 'hitesh-devops'
+  #            appType: 'functionAppLinux'
+  #            appName: 'hitesh-azure-function-${variables.env}'
+  #            package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+  #            runtimeStack: 'NODE|16'
