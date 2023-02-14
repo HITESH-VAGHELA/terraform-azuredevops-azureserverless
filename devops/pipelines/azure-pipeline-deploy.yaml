@@ -47,7 +47,7 @@ stages:
 
   - stage: Deploy
     variables:
-      - template: templates/azure-pipelines.yaml
+      - template: azure-pipelines.yaml
     jobs:
       - job: DeployingToAzure
         steps:
