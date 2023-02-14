@@ -43,17 +43,11 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist.zip'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-              
-      - job: Deploy
-        continueOnError: false 
-        dependsOn: Build
-        steps:
           - task: AzureFunctionApp@1
             displayName: Deploying function to Function App.
             inputs:
               azureSubscription: 'hitesh-devops'
               appType: 'functionAppLinux'
               appName: 'hitesh-azure-function-dev'
-              #package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               runtimeStack: 'NODE|16'
