@@ -54,5 +54,6 @@ stages:
               azureSubscription: 'hitesh-devops'
               appType: 'functionAppLinux'
               appName: 'hitesh-azure-function-dev'
-              package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+              #package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
               runtimeStack: 'NODE|16'
