@@ -15,6 +15,7 @@ parameters:
     values:
       - dev
       - prod
+      
 stages:
   - stage: Build     
     jobs: 
