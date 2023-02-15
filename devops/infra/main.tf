@@ -26,14 +26,14 @@ module "terraform-module-cosmosdb" {
   collection_name     = var.collection_name
 }
 
-#module "terraform-module-apim" {
-#  source                        = "./modules/azure_apim/"
-#  resource_group_name           = var.resource_group_name
-#  apim_instance_name            = var.apim_instance_name
-#  publisher_name                = var.publisher_name
-#  publisher_email               = var.publisher_email
-#  api_name                      = var.api_name
-#  operation_id                  = var.operation_id
-#  azurerm_function_app_host_key = module.terraform-module-function-app.azurerm_function_app_host_key
-#  azurerm_function_name_out     = module.terraform-module-function-app.azurerm_function_name_out
-#}
+module "terraform-module-apim" {
+  source                        = "./modules/azure_apim/"
+  resource_group_name           = var.resource_group_name
+  apim_instance_name            = var.apim_instance_name
+  publisher_name                = var.publisher_name
+  publisher_email               = var.publisher_email
+  api_name                      = var.api_name
+  operation_id                  = var.operation_id
+  azurerm_function_app_host_key = module.terraform-module-function-app.azurerm_function_app_host_key
+  azurerm_function_name_out     = module.terraform-module-function-app.azurerm_function_name_out
+}
