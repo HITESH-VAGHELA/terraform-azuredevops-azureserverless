@@ -48,7 +48,7 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   }
 }
 
-resource "azurerm_api_management_api_operation" "zymr-api-management-operation-todo-put" {
+resource "azurerm_api_management_api_operation" "zymr-api-management-operation-todo-edit" {
   operation_id        = "${var.operation_id}-post"
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
