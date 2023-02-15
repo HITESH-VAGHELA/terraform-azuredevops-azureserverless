@@ -26,7 +26,7 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-  display_name        = "ToDoApi endpoint"
+  display_name        = "GetToDoApi endpoint"
   method              = "GET"
   url_template        = "/users/${var.operation_id}-get/get"
   response {
@@ -39,7 +39,7 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-  display_name        = "ToDoApi endpoint"
+  display_name        = "PostToDoApi endpoint"
   method              = "POST"
   url_template        = "/users/${var.operation_id}-post/post"
 
@@ -53,7 +53,7 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-  display_name        = "ToDoApi endpoint"
+  display_name        = "EditToDoApi endpoint"
   method              = "POST"
   url_template        = "/users/${var.operation_id}-post/post"
 
@@ -67,7 +67,7 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-  display_name        = "ToDoApi endpoint"
+  display_name        = "DeleteToDoApi endpoint"
   method              = "DELETE"
   url_template        = "/users/${var.operation_id}-delete/delete"
 
