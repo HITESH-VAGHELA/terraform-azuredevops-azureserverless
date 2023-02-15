@@ -3,7 +3,7 @@ import { ToDoItemRecord } from "../Models/todo-item-record";
 
 function getCosmosDbContainer() {
     //const cosmosDbConnectionString = process.env["shdevdb_DOCUMENTDB"];
-    const cosmosDbConnectionString = "AccountEndpoint=https://shdevdb-dev.documents.azure.com:443/;AccountKey=m8exBQGtyeL8HGoxHSfwJCsqRIyXhmD5dN8aWWNs34wwiYBUz0ob1n0jiNRUUOXUEViTnApYQgubACDbVdndNQ==;"
+    const cosmosDbConnectionString = "AccountEndpoint=https://shdevdb-dev.documents.azure.com:443/;AccountKey=fo7tzxqtUhcdea78zfuplM0dwLVRitqLJ1NC7lBfgeem8iS2fqUu4gW8QHCDrIPbzEPRPmatRNhWACDbdxY6qA==;"
     const client = new CosmosClient(cosmosDbConnectionString);
     const database = client.database("todocontainer");
     const container = database.container("todoItems");
