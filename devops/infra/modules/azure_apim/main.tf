@@ -106,18 +106,18 @@ resource "azurerm_api_management_api_policy" "zymr-apim-api-policy" {
 </policies>
 XML
 }
-resource "azurerm_api_management_api_operation_policy" "todo-POST" {
-  api_name            = azurerm_api_management_api.zymr-api.name
-  api_management_name = azurerm_api_management.zymr-apim-instance.name
-  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-  operation_id        = azurerm_api_management_api_operation.zymr-api-management-operation-todo-post.operation_id
-
-  xml_content = <<XML
-<policies>
-  <inbound>
-    <base/>
-    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}}" />
-  </inbound>
-</policies>
-XML
-}
+#resource "azurerm_api_management_api_operation_policy" "todo-POST" {
+#  api_name            = azurerm_api_management_api.zymr-api.name
+#  api_management_name = azurerm_api_management.zymr-apim-instance.name
+#  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
+#  operation_id        = azurerm_api_management_api_operation.zymr-api-management-operation-todo-post.operation_id
+#
+#  xml_content = <<XML
+#<policies>
+#  <inbound>
+#    <base/>
+#    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}}" />
+#  </inbound>
+#</policies>
+#XML
+#}
