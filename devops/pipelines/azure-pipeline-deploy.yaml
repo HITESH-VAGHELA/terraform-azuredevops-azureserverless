@@ -51,11 +51,6 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist.zip'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-          
-      - job: Deploy
-        continueOnError: false
-        dependsOn: Build
-        steps:
           - task: AzureFunctionApp@1
             displayName: Deploying function to Function App.
             inputs:
