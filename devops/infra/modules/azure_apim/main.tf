@@ -116,7 +116,7 @@ resource "azurerm_api_management_api_operation_policy" "todo-POST" {
 <policies>
   <inbound>
     <base/>
-    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}}" />
+    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
   </inbound>
 </policies>
 XML
