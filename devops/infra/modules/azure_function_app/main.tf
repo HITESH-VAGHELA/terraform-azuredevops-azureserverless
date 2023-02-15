@@ -38,8 +38,8 @@ resource "azurerm_linux_function_app" "zymr-function-app" {
   }
 }
 
-#data "azurerm_function_app_host_keys" "func_key" {
-#  name                = azurerm_linux_function_app.zymr-function-app.name
-#  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
-#  depends_on          = [azurerm_linux_function_app.zymr-function-app]
-#}
+data "azurerm_function_app_host_keys" "func_key" {
+  name                = azurerm_linux_function_app.zymr-function-app.name
+  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
+  depends_on          = [azurerm_linux_function_app.zymr-function-app]
+}
