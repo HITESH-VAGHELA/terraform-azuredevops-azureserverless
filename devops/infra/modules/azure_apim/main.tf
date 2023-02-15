@@ -101,7 +101,7 @@ resource "azurerm_api_management_api_policy" "zymr-apim-api-policy" {
 <policies>
     <inbound>
         <base />
-        <set-backend-service id="apim-generated-policy" base-url="https://${var.azurerm_function_name_out}.azurewebsites.net/api/" />
+        <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
     </inbound>
     <backend>
         <base />
