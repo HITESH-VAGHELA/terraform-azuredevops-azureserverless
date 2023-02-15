@@ -35,7 +35,7 @@ stages:
              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src/'
              includeRootFolder: false
              archiveType: zip
-             archiveFile: $(Build.ArtifactStagingDirectory)/dist.zip
+             archiveFile: $(Build.ArtifactStagingDirectory)/dist.zipg
              replaceExistingArchive: true
           - task: PublishBuildArtifacts@1
             displayName: Publishing Artifacts
@@ -43,6 +43,11 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist.zip'
               ArtifactName: 'drop'
               publishLocation: 'Container'
+          
+      - job: Deploy
+        continueOnError: false
+        dependsOn: Build
+        steps:
           - task: AzureFunctionApp@1
             displayName: Deploying function to Function App.
             inputs:
