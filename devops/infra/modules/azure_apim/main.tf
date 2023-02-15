@@ -3,7 +3,7 @@ data "azurerm_resource_group" "zymr-resource-group" {
 }
 
 resource "azurerm_api_management" "zymr-apim-instance" {
-  name                = var.apim_instance_name
+  name                = "${var.apim_instance_name}-${terraform.workspace}"
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   location            = data.azurerm_resource_group.zymr-resource-group.location
   publisher_name      = var.publisher_name
