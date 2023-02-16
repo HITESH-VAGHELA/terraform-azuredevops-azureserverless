@@ -97,12 +97,26 @@ resource "azurerm_api_management_api_policy" "zymr-apim-api-policy" {
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
 
+#  xml_content = <<XML
+#<policies>
+#    <inbound>
+#        <base />
+#        <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
+#    </inbound>
+#</policies>
+#XML
+#}
   xml_content = <<XML
-<policies>
+  <policies>
     <inbound>
         <base />
-        <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
     </inbound>
+    <backend>
+        <base-url value="https://${var.azurerm_function_name_out}.azurewebsites.net" />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
 </policies>
 XML
 }
