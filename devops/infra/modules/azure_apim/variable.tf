@@ -41,3 +41,7 @@ variable "operation_id" {
 variable "function_app_resource_id" {
   type = string
 }
+
+variable "operation_id_edit" {
+  type = string
+}

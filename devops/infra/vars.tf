@@ -20,3 +20,4 @@ variable "publisher_name" {}
 variable "publisher_email" {}
 variable "api_name" {}
 variable "operation_id" {}
+variable "operation_id_edit" {}

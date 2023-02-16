@@ -34,6 +34,7 @@ module "terraform-module-apim" {
   publisher_email               = var.publisher_email
   api_name                      = var.api_name
   operation_id                  = var.operation_id
+  operation_id_edit             = var.operation_id_edit
   azurerm_function_app_host_key = module.terraform-module-function-app.azurerm_function_app_host_key
   azurerm_function_name_out     = module.terraform-module-function-app.azurerm_function_name_out
   function_app_resource_id      = module.terraform-module-function-app.azurerm_function_id
