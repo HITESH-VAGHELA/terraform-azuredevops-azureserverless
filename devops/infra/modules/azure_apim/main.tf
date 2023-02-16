@@ -49,13 +49,13 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
 }
 
 resource "azurerm_api_management_api_operation" "zymr-api-management-operation-todo-edit" {
-  operation_id        = "${var.operation_id_edit}-post"
+  operation_id        = "${var.operation_id}-put"
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   display_name        = "EditToDoApi endpoint"
-  method              = "POST"
-  url_template        = "/users/${var.operation_id}-post/post"
+  method              = "PUT"
+  url_template        = "/users/${var.operation_id}-put/put"
 
   response {
     status_code = 200
