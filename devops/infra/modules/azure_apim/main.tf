@@ -17,7 +17,7 @@ resource "azurerm_api_management_api" "zymr-api" {
   resource_group_name   = data.azurerm_resource_group.zymr-resource-group.name
   revision              = "1"
   display_name          = "ToDo Api"
-  protocols             = ["https"]
+  protocols             = ["http"]
   subscription_required = false
 }
 
