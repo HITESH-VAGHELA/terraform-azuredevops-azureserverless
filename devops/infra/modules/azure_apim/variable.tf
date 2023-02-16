@@ -38,3 +38,6 @@ variable "operation_id" {
   description = "operation id in Azure api management api operations."
 }
 
+variable "function_app_resource_id" {
+  type = string
+}

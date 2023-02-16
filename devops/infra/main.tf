@@ -36,4 +36,5 @@ module "terraform-module-apim" {
   operation_id                  = var.operation_id
   azurerm_function_app_host_key = module.terraform-module-function-app.azurerm_function_app_host_key
   azurerm_function_name_out     = module.terraform-module-function-app.azurerm_function_name_out
-}
+  function_app_resource_id      = module.terraform-module-function-app.azurerm_function_id
+ }

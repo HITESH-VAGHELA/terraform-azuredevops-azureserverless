@@ -6,3 +6,7 @@ output "azurerm_function_app_host_key" {
 output "azurerm_function_name_out" {
   value = azurerm_linux_function_app.zymr-function-app.name
 }
+
+output "azurerm_function_id" {
+    value = azurerm_linux_function_app.zymr-function-app.id
+}

@@ -83,6 +83,7 @@ resource "azurerm_api_management_backend" "zymr-azure-apim-backend" {
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   protocol            = "http"
   url                 = "https://${var.azurerm_function_name_out}.azurewebsites.net/api/"
+  resource_id         = "https://management.azure.com/${var.function_app_resource_id}"
   credentials {
     certificate = []
     header = {
@@ -97,29 +98,29 @@ resource "azurerm_api_management_api_policy" "zymr-apim-api-policy" {
   api_management_name = azurerm_api_management.zymr-apim-instance.name
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
 
-#  xml_content = <<XML
-#<policies>
-#    <inbound>
-#        <base />
-#        <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
-#    </inbound>
-#</policies>
-#XML
-#}
   xml_content = <<XML
-  <policies>
+<policies>
     <inbound>
         <base />
+        <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
     </inbound>
-    <backend>
-        <set-backend-service id="apim-generated-policy" base-url="https://${var.azurerm_function_name_out}.azurewebsites.net/api/" />
-    </backend>
-    <outbound>
-        <base />
-    </outbound>
 </policies>
 XML
 }
+#  xml_content = <<XML
+#  <policies>
+#    <inbound>
+#        <base />
+#    </inbound>
+#    <backend>
+#        <set-backend-service id="apim-generated-policy" base-url="https://${var.azurerm_function_name_out}.azurewebsites.net/api/" />
+#    </backend>
+#    <outbound>
+#        <base />
+#    </outbound>
+#</policies>
+#XML
+#}
 
 #resource "azurerm_api_management_api_operation_policy" "todo-POST" {
 #  api_name            = azurerm_api_management_api.zymr-api.name
