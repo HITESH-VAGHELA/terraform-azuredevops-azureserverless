@@ -136,8 +136,9 @@ resource "azurerm_api_management_api_operation_policy" "todo-POST" {
     <set-header name="x-functions-key" >
       <value>"${var.azurerm_function_app_host_key}"</value>
     </set-header>
-
-      
+    <allowed-methods>
+            <method>POST</method>
+    </allowed-methods>      
   </inbound>
 </policies>
 XML
