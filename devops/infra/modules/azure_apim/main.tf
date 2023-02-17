@@ -28,7 +28,6 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   display_name        = "GetToDoApi endpoint"
   method              = "GET"
-  #url_template        = "/users/${var.operation_id}-get/get"
   url_template        = "/todoitem/" 
   response {
     status_code = 200
@@ -42,7 +41,6 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   display_name        = "PostToDoApi endpoint"
   method              = "POST"
-  #url_template        = "/users/${var.operation_id}-post/post"
   url_template        = "/todoitem/" 
   response {
     status_code = 200
@@ -56,7 +54,6 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   display_name        = "EditToDoApi endpoint"
   method              = "PUT"
-  #url_template        = "/users/${var.operation_id}-put/put"
   url_template        = "/todoitem/" 
 
   response {
@@ -71,7 +68,6 @@ resource "azurerm_api_management_api_operation" "zymr-api-management-operation-t
   resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
   display_name        = "DeleteToDoApi endpoint"
   method              = "DELETE"
-  #url_template        = "/users/${var.operation_id}-delete/delete"
   url_template        = "/todoitem/"
 
   response {
