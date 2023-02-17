@@ -133,9 +133,6 @@ resource "azurerm_api_management_api_operation_policy" "todo-POST" {
   <inbound>
     <base/>
     <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
-    <set-header name="x-functions-key" >
-      <value>"${var.azurerm_function_app_host_key}"</value>
-    </set-header>   
   </inbound>
 </policies>
 XML
