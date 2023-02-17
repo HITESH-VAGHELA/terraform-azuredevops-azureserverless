@@ -137,3 +137,51 @@ resource "azurerm_api_management_api_operation_policy" "todo-POST" {
 </policies>
 XML
 }
+
+resource "azurerm_api_management_api_operation_policy" "todo-GET" {
+  api_name            = azurerm_api_management_api.zymr-api.name
+  api_management_name = azurerm_api_management.zymr-apim-instance.name
+  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
+  operation_id        = azurerm_api_management_api_operation.zymr-api-management-operation-todo-get.operation_id
+
+  xml_content = <<XML
+<policies>
+  <inbound>
+    <base/>
+    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
+  </inbound>
+</policies>
+XML
+}
+
+resource "azurerm_api_management_api_operation_policy" "todo-PUT" {
+  api_name            = azurerm_api_management_api.zymr-api.name
+  api_management_name = azurerm_api_management.zymr-apim-instance.name
+  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
+  operation_id        = azurerm_api_management_api_operation.zymr-api-management-operation-todo-edit.operation_id
+
+  xml_content = <<XML
+<policies>
+  <inbound>
+    <base/>
+    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
+  </inbound>
+</policies>
+XML
+}
+
+resource "azurerm_api_management_api_operation_policy" "todo-DELETE" {
+  api_name            = azurerm_api_management_api.zymr-api.name
+  api_management_name = azurerm_api_management.zymr-apim-instance.name
+  resource_group_name = data.azurerm_resource_group.zymr-resource-group.name
+  operation_id        = azurerm_api_management_api_operation.zymr-api-management-operation-todo-delete.operation_id
+
+  xml_content = <<XML
+<policies>
+  <inbound>
+    <base/>
+    <set-backend-service id="apim-generated-policy" backend-id="${azurerm_api_management_backend.zymr-azure-apim-backend.name}" />
+  </inbound>
+</policies>
+XML
+}
