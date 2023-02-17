@@ -110,21 +110,8 @@ resource "azurerm_api_management_api_policy" "zymr-apim-api-policy" {
 </policies>
 XML
 }
-#  xml_content = <<XML
-#  <policies>
-#    <inbound>
-#        <base />
-#    </inbound>
-#    <backend>
-#        <set-backend-service id="apim-generated-policy" base-url="https://${var.azurerm_function_name_out}.azurewebsites.net/api/" />
-#    </backend>
-#    <outbound>
-#        <base />
-#    </outbound>
-#</policies>
-#XML
-#}
 
+# This are Operation Level Policies that calls to the function app. 
 resource "azurerm_api_management_api_operation_policy" "todo-POST" {
   api_name            = azurerm_api_management_api.zymr-api.name
   api_management_name = azurerm_api_management.zymr-apim-instance.name
